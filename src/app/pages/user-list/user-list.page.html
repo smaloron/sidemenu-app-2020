@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>user-list</ion-title>
+
+    </ion-toolbar>
+
+  <ion-toolbar>
+    <div>
+      <ion-item>
+        <ion-label>Nationalité</ion-label>
+        <ion-select [(ngModel)]="search.nationality" multiple="true">
+          <ion-select-option value="fr">Français</ion-select-option>
+          <ion-select-option value="dk">Danois</ion-select-option>
+          <ion-select-option value="es">Espagnol</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Genre</ion-label>
+        <ion-select [(ngModel)]="search.gender">
+          <ion-select-option value="female">Féminin</ion-select-option>
+          <ion-select-option value="male">Masculin</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="getUserList()">Valider</ion-button>
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+
+  <ion-refresher (ionRefresh)="getMoreUsers($event, 'prepend')" slot="fixed"> <ion-refresher-content
+          pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+  </ion-refresher-content> </ion-refresher>
+
+
+
+    <ion-list>
+        <ion-item *ngFor="let user of userList" routerLink="/user-details/{{ user.id }}">
+            <ion-avatar slot="start">
+                <ion-img [src]="user.picture"></ion-img>
+            </ion-avatar>
+            <ion-label>
+                <h3>{{ user.fullName }}</h3>
+                <p>{{ user.address }}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="getMoreUsers($event, 'append')">
+        <ion-infinite-scroll-content
+                loading-text="Chargement en cours"
+                loading-spinner="bubbles">
+
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

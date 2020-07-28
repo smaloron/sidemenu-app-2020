@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Seb"
+    },
+    {
+      "id": 2,
+      "name": "Maryse"
+    },
+    {
+      "id": 3,
+      "name": "Sylla"
+    },
+    {
+      "name": "toto",
+      "id": 4
+    },
+    {
+      "name": "toto",
+      "id": 5
+    },
+    {
+      "name": "test",
+      "id": 6
+    },
+    {
+      "name": "titi le minet",
+      "id": 7
+    },
+    {
+      "name": "Aristote",
+      "id": 8
+    },
+    {
+      "name": "Socrate",
+      "id": 9
+    }
+  ]
+}
