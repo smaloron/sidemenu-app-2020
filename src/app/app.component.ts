@@ -30,6 +30,11 @@ export class AppComponent implements OnInit {
             title: 'Inscription',
             url: '/register',
             icon: 'person'
+        },
+        {
+            title: 'Liste des notes',
+            url: '/note-list',
+            icon: 'list'
         }
     ];
     public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

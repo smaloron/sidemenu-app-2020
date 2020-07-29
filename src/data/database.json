@@ -36,5 +36,43 @@
       "name": "Socrate",
       "id": 9
     }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "title": "Une note",
+      "image": null,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Une autre note",
+      "image": null,
+      "userId": 2
+    },
+    {
+      "title": "test",
+      "id": 3,
+      "userId": 1,
+      "image": null
+    },
+    {
+      "title": "test4",
+      "id": 4,
+      "userId": 1,
+      "image": null
+    },
+    {
+      "title": "test pour Sylla",
+      "id": 5,
+      "userId": 3,
+      "image": null
+    },
+    {
+      "title": "Encore un test",
+      "id": 6,
+      "userId": 3,
+      "image": null
+    }
   ]
 }
