@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>note-form</ion-title>
+    <ion-title>{{ note.id ? 'Modification' : 'Ajout' }} de note</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,6 +10,11 @@
     <ion-label>Titre</ion-label>
     <ion-input type="text" [(ngModel)]="note.title"></ion-input>
   </ion-item>
+
+  <ion-img src="data:image/jpeg;base64,{{ note.image }}" *ngIf="note.image"></ion-img>
+
+  <ion-button expand="block" (click)="cliclac()">Prendre un photo</ion-button>
+
   <ion-button expand="full" (click)="validate()">Valider</ion-button>
 
 </ion-content>

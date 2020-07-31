@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
+  personName = 'Isidore Ducasse';
+
+  public grade = 5;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  doClick(event){
+    console.log(event);
   }
 
 }

@@ -1,10 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>settings</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>settings</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+
+    <app-person name="Seb" (countClick)="doClick($event)"></app-person>
+
+    <app-person [name]="personName"></app-person>
+
+    <app-person name="Albert"></app-person>
+
+  <app-person ></app-person>
+
+    <p>{{ grade }}</p>
+
+    <app-star max="10" inactiveColor="success" [(starValue)]="grade"></app-star>
+
+</ion-content>

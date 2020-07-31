@@ -15,8 +15,13 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let note of noteList">
-        <ion-label>{{ note.title }}</ion-label>
+      <ion-col size="6" *ngFor="let note of noteList" >
+        <ion-item>
+          <ion-label routerLink="/note-form/{{ note.id }}">{{ note.title }}</ion-label>
+          <ion-icon slot="end" name="trash" (click)="delete(note)"></ion-icon>
+        </ion-item>
+
+        <ion-img src="data:image/jpeg;base64,{{ note.image }}" *ngIf="note.image"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>

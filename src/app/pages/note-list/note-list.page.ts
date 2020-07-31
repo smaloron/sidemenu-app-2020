@@ -21,4 +21,8 @@ export class NoteListPage implements OnInit {
         this.noteService.noteListChanged.subscribe(data => this.noteList = data);
     }
 
+    delete(note: NoteInterface) {
+        this.noteService.deleteNote(note);
+    }
+
 }

@@ -54,4 +54,24 @@ export class NoteService {
         );
     }
 
+    public updateNote(note: NoteInterface) {
+
+        this.http.put(URL + note.id, note).subscribe(
+            (data: NoteInterface) => {
+                this.noteListChanged.next(this.noteList);
+            }
+        );
+    }
+
+    public deleteNote(note: NoteInterface){
+        this.http.delete(URL + note.id).subscribe( () => {
+            this.loadNotes();
+        });
+    }
+
+
+    public getNoteById(id) {
+        return this.noteList.find((item) => item.id == id);
+    }
+
 }

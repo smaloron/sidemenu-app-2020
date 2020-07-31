@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'note-form',
     loadChildren: () => import('./pages/note-form/note-form.module').then( m => m.NoteFormPageModule)
+  },
+  {
+    path: 'note-form/:id',
+    loadChildren: () => import('./pages/note-form/note-form.module').then( m => m.NoteFormPageModule)
+  },
+  {
+    path: 'my-map',
+    loadChildren: () => import('./pages/my-map/my-map.module').then( m => m.MyMapPageModule)
   }
 ];
 

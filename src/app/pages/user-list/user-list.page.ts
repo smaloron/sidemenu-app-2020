@@ -24,7 +24,7 @@ export class UserListPage implements OnInit, OnDestroy {
     }
 
     getUserList() {
-        this.userService.loadUser(this.search, true);
+        this.userService.loadUser(this.search);
     }
 
     getMoreUsers(event, mode) {
