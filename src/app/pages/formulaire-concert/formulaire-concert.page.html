@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>formulaire-concert</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form #concertForm="ngForm" (ngSubmit)="onSubmit(concertForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-datetime required ngModel name="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Groupe</ion-label>
+        <ion-select ngModel name="groupeId">
+          <ion-select-option *ngFor="let groupe of (concertService.groupeChange | async)"
+                             value="{{ groupe.id }}">
+            {{ groupe.nom }}
+          </ion-select-option>
+        </ion-select>
+        <ion-button slot="end" (click)="ajoutGroupe()">Ajouter</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Salles</ion-label>
+        <ion-select ngModel name="salleId">
+          <ion-select-option *ngFor="let salle of (concertService.salleChange | async)"
+                             value="{{ salle.id }}">
+            {{ salle.nom }}
+          </ion-select-option>
+        </ion-select>
+        <ion-button slot="end">Ajouter</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Note</ion-label>
+        <app-star max="10" symbol="musical-notes" name="note" [(starValue)]="note"></app-star>
+      </ion-item>
+
+
+    </ion-list>
+
+    <ion-button expand="block" type="submit">Valider</ion-button>
+  </form>
+
+</ion-content>
