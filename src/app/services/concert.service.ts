@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 
-const URL = 'http://localhost:3000/concerts/?_expand=groupe&_expand=salle';
+const URL_BASE = 'http://localhost:3000/';
 
-const URL_GROUPE = 'http://localhost:3000/groupes';
+const URL_CONCERT = URL_BASE + 'concerts/?_expand=groupe&_expand=salle';
 
-const URL_SALLE = 'http://localhost:3000/salles';
+const URL_GROUPE = URL_BASE + 'groupes';
+
+const URL_SALLE = URL_BASE + 'salles';
 
 export interface ConcertInterface {
     id: number;
@@ -60,7 +62,7 @@ export class ConcertService {
     }
 
     public chargementConcert() {
-        this.http.get(URL).subscribe((data: any) => {
+        this.http.get(URL_CONCERT).subscribe((data: any) => {
             this.listeConcert = data.map((concert) => {
                 return this.hydrate(concert);
             });
@@ -70,7 +72,7 @@ export class ConcertService {
     }
 
     insertConcert(concert){
-        this.http.post(URL, concert).subscribe((data: any) => {
+        this.http.post(URL_CONCERT, concert).subscribe((data: any) => {
             console.log(data);
             this.chargementConcert();
         });
@@ -79,6 +81,12 @@ export class ConcertService {
     insertGroupe(groupe){
         this.http.post(URL_GROUPE, groupe).subscribe(() => {
             this.chargementGroupe();
+        });
+    }
+
+    suppressionConcert(id: number){
+        this.http.delete(URL_BASE + 'concerts/' + id).subscribe(() => {
+            this.chargementConcert();
         });
     }
 }
