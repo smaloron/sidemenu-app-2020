@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'formulaire-concert',
     loadChildren: () => import('./pages/formulaire-concert/formulaire-concert.module').then( m => m.FormulaireConcertPageModule)
+  },
+  {
+    path: 'stats',
+    loadChildren: () => import('./pages/stats/stats.module').then( m => m.StatsPageModule)
   }
 ];
 

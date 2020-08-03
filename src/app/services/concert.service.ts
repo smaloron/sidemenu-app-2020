@@ -89,4 +89,14 @@ export class ConcertService {
             this.chargementConcert();
         });
     }
+
+    calculMoyenneGroupe(groupe: string){
+        // Filtrage de la liste
+        const concertGroupe = this.listeConcert.filter( (item: ConcertInterface) => item.groupe === groupe);
+        const nbConcerts = concertGroupe.length;
+        const sommeNotes = concertGroupe.map( (item) => item.note)
+            .reduce( (total, current) => total + current);
+
+        return sommeNotes / nbConcerts;
+    }
 }
