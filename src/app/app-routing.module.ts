@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'stats',
     loadChildren: () => import('./pages/stats/stats.module').then( m => m.StatsPageModule)
+  },
+  {
+    path: 'book-list',
+    loadChildren: () => import('./pages/books/book-list/book-list.module').then( m => m.BookListPageModule)
   }
 ];
 
