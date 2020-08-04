@@ -1,6 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>book-list</ion-title>
+        <ion-button (click)="resetSearch()" *ngIf="bookService.search" slot="end">
+            Réinitialiser
+        </ion-button>
     </ion-toolbar>
 </ion-header>
 

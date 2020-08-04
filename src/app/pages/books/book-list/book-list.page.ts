@@ -20,4 +20,10 @@ export class BookListPage implements OnInit {
     });
   }
 
+  public resetSearch(){
+    this.bookService.reset();
+    this.bookService.search = null;
+    this.bookService.loadBooks();
+  }
+
 }
