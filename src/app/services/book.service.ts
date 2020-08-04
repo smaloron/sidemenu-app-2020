@@ -58,5 +58,9 @@ export class BookService {
         );
     }
 
+    public getOneBookById(id: number) {
+        return this.bookList.find(item => item.id === id);
+    }
+
 
 }
