@@ -11,7 +11,9 @@ const BOOK_URL = BASE_URL + 'books/';
 })
 export class BookService {
 
-    public bookChanged: Subject<Book[]>;
+    public bookListChanged: Subject<Book[]>;
+
+    public bookChanged: Subject<Book>;
 
     private bookList: Book[] = [];
 
@@ -22,7 +24,8 @@ export class BookService {
     public search: string;
 
     constructor(private http: HttpClient) {
-        this.bookChanged = new Subject<Book[]>();
+        this.bookListChanged = new Subject<Book[]>();
+        this.bookChanged = new Subject<Book>();
     }
 
     public loadBooks(callback = null) {
@@ -44,7 +47,7 @@ export class BookService {
         return url;
     }
 
-    public reset(){
+    public reset() {
         this.bookList = [];
         this.currentPage = 0;
         this.totalPages = null;
@@ -66,7 +69,7 @@ export class BookService {
 
                 this.bookList = this.bookList.concat(bookList);
 
-                this.bookChanged.next(this.bookList);
+                this.bookListChanged.next(this.bookList);
 
                 if (callback) {
                     callback();
@@ -79,14 +82,37 @@ export class BookService {
         return this.bookList.find(item => item.id === id);
     }
 
-    public deleteBook(id: number){
+    public deleteBook(id: number) {
         this.http.delete(BOOK_URL + id).subscribe(
-            (response: {success: boolean, error?: string}) => {
-                if (response.success){
-                    const index = this.bookList.findIndex( item => item.id === id);
+            (response: { success: boolean, error?: string }) => {
+                if (response.success) {
+                    const index = this.bookList.findIndex(item => item.id === id);
                     this.bookList.splice(index, 1);
                 } else {
                     console.log(response.error);
+                }
+            }
+        );
+    }
+
+    public findOneByIdFromDatabase(id: number) {
+        this.http.get(BOOK_URL + id).subscribe(
+            (response: any) => {
+                const book = new Book();
+                book.hydrate(response);
+
+                this.bookChanged.next(book);
+            }
+        );
+    }
+
+    public updateBook(book, callback){
+        this.http.put(BOOK_URL + book.id, book).subscribe(
+            () => {
+                const index = this.bookList.findIndex( item => item.id === book.id);
+                this.bookList[index] = book;
+                if (callback){
+                    callback();
                 }
             }
         );
